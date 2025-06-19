@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <!-- Swiper CSS -->
+    <link rel="stylesheet" href="swiper-bundle.min.css">
+   
+    <link rel="stylesheet" href="pixelGame.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="../script/main.js">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+   
+    <title>Game</title>
+    <!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" rel="stylesheet">
+</head>
+<body>
+ 
+
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="../home/index.html" class="nav__logo">
+        <img src="../image_content/logo.png" alt="image">
+        <span>Code Talker</span>
+      </a>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li>
+            <a href="../about/about.html" class="nav__link">About</a>
+          </li>
+
+
+          <li>
+            <a href="#" class="nav__link active-link">Games</a>
+          </li>
+
+
+          <li>
+            <a href="../project/project.html" class="nav__link">Projects</a>
+          </li>
+
+
+          <li>
+            <a href="../contacts/contact.html" class="nav__link">Contacts</a>
+          </li>
+
+
+        </ul>
+        <!-- Close Buttons -->
+         <div class="nav__close" id="nav-close">
+          <i class="ri-close-large-line"></i>         
+        </div>
+      </div>
+
+      <div class="nav__buttons">
+        <!-- theme button -->
+        <i class="ri-moon-clear-fill nav__theme" id="theme-button"> </i>
+
+          <!-- Toggle Button -->
+          <div class="nav__toggle" id="nav-toggle">
+           <i class="ri-dropbox-fill"></i>      
+           </div>
+
+       
+      </div>
+
+    </nav>
+</header>
+<!-- Main -->
+<main class="main">
+  <!-- Home -->
+   <section class="home section" id="home">
+    <img src="3.png" alt="image" class="home__bg">
+    <div class="home__blur"></div>
+    <div class="home__container container grid">
+      <div class="home__data">
+        <h1 class="home__title">Java Realms: <br>The Java Chronicle System</br></h1>
+        
+      <p class="home__description">A game-based that allow the students to play, but at the same time 
+        learn the java programming. This system is designed to provide its user with a comprehensive understanding of the Java Programming and assist you 
+        in developing exciting Role-Playing Game using Java. This will helps its users to gain necessary knowledge and tools to create 
+        captivating experience in programming
+      </p>
+      
+      <a href="#creation" class="button button__opa-30">
+        Enter World
+        <i class="ri-gamepad-line"></i>
+      </a>
+
+      </div>
+
+
+      <div class="home__swiper swiper">
+        <div class="swiper-wrapper">
+          <article class="home__article swiper-slide">
+            <img src="../image_content/1.png" alt="image" class="home__img">
+          </article>
+
+          <article class="home__article swiper-slide">
+            <img src="../image_content/2.png" alt="image" class="home__img">
+          </article>
+
+          <article class="home__article swiper-slide">
+            <img src="../image_content/3.png" alt="image" class="home__img">
+          </article>
+
+          <article class="home__article swiper-slide">
+            <img src="../image_content/4.png" alt="image" class="home__img">
+          </article>
+
+          <article class="home__article swiper-slide">
+            <img src="../image_content/5.png" alt="image" class="home__img">
+          </article>
+        </div>
+        
+        <!-- If needing Navigation on Buttons-->
+        <div class="swiper-button-prev">
+          <i class="ri-arrow-left-circle-fill"></i>
+        </div>
+        <div class="swiper-button-next">
+          <i class="ri-arrow-right-circle-fill"></i>
+
+        </div>
+      </div>
+    </div>
+
+   </section>
+
+
+
+   <!-- Creations -->
+   <section class="creation section" id="creation">
+    <h2 class="section__title">
+      Gameplay
+    </h2>
+
+    <div class="creation__container container grid">
+      <article class="creation__card">
+        <img src="../image_content/6.png" alt="image" class="creation__img">
+        
+        <div class="creation__data">
+          <h3 class="creation__subtitle">
+           Move: Use W, A, S, D or Arrow keys 
+          </h3>
+
+          <h2 class="creation__title">
+            Talk/Attack: Press T 
+            (used for both NPC interaction and melee attacks)
+          </h2>
+
+          <p class="creation__icon">
+            <i class="ri-bug-2-line"></i>
+            <span>
+              Control
+            </span>
+          </p>
+
+        </div>
+      
+      
+      </article>
+
+      <article class="creation__card">
+        <img src="../image_content/7.png" alt="image" class="creation__img">
+        
+        <div class="creation__data">
+          <h3 class="creation__subtitle">
+            Shoot Projectile: Press E 
+            (weaker than melee; consumes mana)
+          </h3>
+
+          <h2 class="creation__title">
+             Mana: Check upper-left mana crystals
+              <br>Blue = can shoot
+              <br>White = out of mana
+          </h2>
+
+          <p class="creation__icon">
+            <i class="ri-bug-2-line"></i>
+            <span>
+              Control
+            </span>
+          </p>
+
+        </div>
+      
+      
+      </article>
+    </div>
+
+
+   </section>
+
+
+
+   <!-- Learning/Perks-->
+   <section class="learning section" id="learning">
+    <h2 class="section__title">Can They Really Learn?</h2>
+
+
+    <div class="learning__container container grid">
+      <img src="../image_content/1.png" alt="image" class="learning__img">
+    
+      <div class="learning__swiper swiper">
+        <div class="swiper-wrapper">
+          <!-- 1st Card -->
+          <div class="learning__card swiper-slide">
+            <h2 class="learning__title">
+              Game-Based Java Learning
+            </h2>
+
+            <p class="learning__description">
+              Java Realms: The Java Chronicle System is an 
+              interactive game designed to teach students 
+              Java programming through gameplay. It offers 
+              hands-on learning by integrating coding concepts 
+              into an RPG environment, enabling users to build 
+              both programming skills and game logic.
+            </p>
+          </div>
+
+          <!-- 2nd Card -->
+          <div class="learning__card swiper-slide">
+            <h2 class="learning__title">
+              Gameplay Mechanics
+            </h2>
+
+            <p class="learning__description">
+              Players control their character 
+              using W, A, S, D or arrow keys. Interact or 
+              attack using T, and fire ranged projectiles 
+              with E, which consumes mana. Blue mana crystals 
+              indicate availability; white means you're out.
+            </p>
+          </div>
+
+          <!-- 3rd Card -->
+          <div class="learning__card swiper-slide">
+            <h2 class="learning__title">
+              Puzzles & Progression System
+            </h2>
+
+            <p class="learning__description">
+              To collect items like Lanterns or Keys, 
+              players must answer questions correctly, 
+              earning speed boosts for faster movement. 
+              Each key has a unique name and opens only 
+              its matching door. Using the wrong key triggers 
+              a hint to guide the player.
+            </p>
+
+          </div>
+
+        </div>
+        <!-- If needing Navigation on Buttons-->
+        <div class="swiper-button-prev">
+          <i class="ri-arrow-left-circle-fill"></i>
+        </div>
+        <div class="swiper-button-next">
+          <i class="ri-arrow-right-circle-fill"></i>
+
+        </div>
+      </div>
+    
+    
+    </div>
+
+
+   </section>
+
+   <!-- Gallery -->
+    <section class="gallery section" id="gallery">
+      <h2 class="section__title">Lessons</h2>
+
+      <div class="gallery__container container grid">
+        <!-- 1 LESSON CARD -->
+        <article class="lesson__card">
+          <img src="../image_content/14.png" alt="iamge" class="lesson__img">
+          <div class="lesson__shadow">
+
+
+          </div>
+
+          <div class="lesson__data">
+            <h3 class="lesson__subtitle">
+              Object Interaction & 
+              Speed Boost Mechanic
+            </h3>
+
+            <h2 class="lesson__title">
+              UnlockQuest 
+            </h2>
+          </div>
+
+        </article>
+        <!-- 2 LESSON CARD -->
+        <article class="lesson__card">
+          <img src="../image_content/16.png" alt="iamge" class="lesson__img">
+          <div class="lesson__shadow">
+
+
+          </div>
+
+          <div class="lesson__data2">
+            <h3 class="lesson__subtitle">
+              Key Identification
+            </h3>
+
+            <h2 class="lesson__title">
+              KeyScan 
+            </h2>
+          </div>
+
+        </article>
+
+        <!-- 3 LESSON CARD -->
+        <article class="lesson__card">
+          <img src="../image_content/15.png" alt="iamge" class="lesson__img">
+          <div class="lesson__shadow">
+
+
+          </div>
+
+          <div class="lesson__data">
+            <h3 class="lesson__subtitle">
+              Door Matching & Hints
+            </h3>
+
+            <h2 class="lesson__title">
+              GateCode
+            </h2>
+          </div>
+
+        </article>
+      </div>
+    </section>
+
+    <!-- JOIN SECTION -->
+    <section class="join section" id="join">
+      <div  class="join__container container grid">
+        <div class="join__data">
+          <h2 class="section__title">Let's Start Creating Our Own Game</h2>
+          <p class="join__desc">
+            Dive into an exciting journey where learning meets creativity! 
+            This phase introduces you to the basics of Java programming 
+            through a fun and interactive game-building experience. Step 
+            by step, you’ll develop your own role-playing game, apply 
+            coding concepts, 
+            and bring your ideas to life—all while having fun.
+          </p>
+
+          <form action="" class="join__form">
+            <input type="email" placeholder="Enter Your Email!" class="join__input">
+            <button type="submit" class="join__button button">
+              Start Creating!
+              <i class="ri-arrow-right-circle-fill"></i>
+            </button>
+          
+          </form>
+          <!-- <img src="6.png" alt="image" class="join__img"> -->
+        </div>
+      </div>
+
+    </section>
+</main>
+
+<footer class="footer">
+  <div class="foot__container container grid">
+    <a href="" class="footer__logo">
+      <!-- <img src="../image_content/logo.png" alt="image"> -->
+      <span>Code Talker</span>
+
+    </a>
+
+    <div class="footer__content grid">
+      <!-- 1 Footer -->
+      <div class="">
+        <h3 class="footer__title">About</h3>
+        <ul class="footer__links">
+          <li>
+            <a href="" class="footer__link">About Us</a>
+          </li>
+          <li>
+            <a href="" class="footer__link">Features</a>
+          </li>
+          <li>
+            <a href="" class="footer__link">Blogs</a>
+          </li>  
+        </ul>
+
+      </div>
+      <!-- 2 Footer -->
+      <div class="">
+        <h3 class="footer__title">Contact</h3>
+        <ul class="footer__links">
+          <li>
+            <a href="" class="footer__link">Telephone</a>
+          </li>
+          <li>
+            <a href="" class="footer__link">Support</a>
+          </li>
+          <li>
+            <a href="" class="footer__link">Contact Us</a>
+          </li>  
+        </ul>
+
+      </div>
+
+      <!-- 3 Footer -->
+      <div class="">
+        <h3 class="footer__title">Social</h3>
+        <div class="footer__social">
+          <!-- Facebook -->
+          <a href="" target="_blank" class="footer__social-link">
+            <i class="ri-facebook-circle-fill"></i>
+
+          </a>
+          <!-- Instagram -->
+          <a href="" target="_blank" class="footer__social-link">
+            <i class="ri-instagram-line"></i>
+            
+          </a>
+          <!-- Twitter -->
+          <a href="" target="_blank" class="footer__social-link">
+
+            <i class="ri-twitter-x-line"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- <span class="footer__copy">
+    &#169; Make Your Dream Game Alive
+  </span> -->
+</footer>
+
+<!-- Scroll UP -->
+<a href="" class="scrollup" id="scroll-up">
+<i class="ri-arrow-up-circle-fill"></i>
+
+</a>
+
+
+<!-- Swiper Script -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="../script/swiper-bundle.min.js"></script>
+
+
+<script src="../script/main.js"></script>
+
+</body>
+</html>

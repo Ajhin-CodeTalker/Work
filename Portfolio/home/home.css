@@ -1,0 +1,323 @@
+/* Import pixel font: Press Start 2P */
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    font-family: 'Press Start 2P', cursive;
+    background: #111;
+    color: #e0e0e0;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Root variables */
+  :root {
+    --primary-color: #b60303;
+    --secondary-color: #55ff55;
+    --background-gradient: linear-gradient(135deg, #0d1b2a 0%, #1b263b 80%);
+    --hud-bg: rgba(0, 0, 0, 0.75);
+    --accent-glow: #28f0ff;
+    --shadow-color: rgba(25, 76, 76, 0.5);
+    --highlight-color: #0ff;
+    --border-color: #00ffff;
+    --button-bg: #002b36;
+    --button-hover-bg: #004750;
+    --font-size-base: 12px;
+    --font-size-title: 32px;
+    --font-size-menu: 18px;
+    --spacing: 16px;
+  }
+
+  /* Scrollbar styling for desktop */
+  ::-webkit-scrollbar {
+    width: 12px;
+    background: #111;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 6px;
+  }
+
+  /* Container all */
+  #app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--background-gradient);
+    padding: var(--spacing);
+    gap: 32px;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  /* Header HUD */
+  header.hud {
+    position: sticky;
+    top: 0;
+    background: var(--hud-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: clamp(8px, 1vw, 14px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow:
+      0 0 8px var(--accent-glow),
+      inset 0 0 12px var(--accent-glow);
+  }
+  header.hud .score,
+  header.hud .level {
+    color: var(--primary-color);
+    text-shadow:
+      0 0 4px var(--primary-color);
+  }
+  header.hud .title {
+    font-size: clamp(16px, 4vw, 36px);
+    color: var(--secondary-color);
+    text-shadow: 0 0 8px var(--secondary-color);
+  }
+
+  /* Main menu screen */
+  #main-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    text-align: center;
+    user-select: none;
+  }
+  #main-menu .game-title {
+    color: var(--primary-color);
+    font-size: clamp(24px, 6vw, 48px);
+    text-shadow: 0 0 12px var(--primary-color);
+    outline-offset: 4px;
+  }
+  #main-menu button {
+    background-color: var(--button-bg);
+    border: 4px solid var(--primary-color);
+    border-radius: 16px;
+    color: var(--primary-color);
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(10px, 2vw, 18px);
+    padding: 16px 48px;
+    cursor: pointer;
+    box-shadow:
+      0 0 8px var(--primary-color),
+      inset 0 0 12px var(--primary-color);
+    transition: all 0.25s ease-in-out;
+    min-width: 180px;
+  }
+  #main-menu button:hover,
+  #main-menu button:focus {
+    background-color: var(--primary-color);
+    color: #111;
+    box-shadow:
+      0 0 16px var(--secondary-color),
+      inset 0 0 18px var(--secondary-color);
+    outline: none;
+  }
+
+  /* Controls hint box */
+  #controls-hint {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--hud-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: clamp(8px, 1vw, 12px);
+    color: var(--primary-color);
+    text-shadow: 0 0 4px var(--primary-color);
+    user-select: none;
+    max-width: 680px;
+    width: 90vw;
+    text-align: center;
+    z-index: 90;
+  }
+
+  /* Gameplay area - portfolio with grid layout */
+  #gameplay {
+    display: none;
+    flex: 1;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 50px;
+    padding-top: 20px;
+    scroll-padding-inline: var(--spacing);
+  }
+
+  #portfolio-levels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px 32px;
+    padding-left: var(--spacing);
+    padding-right: var(--spacing);
+    justify-items: center;
+    align-items: stretch;
+  }
+
+  /* Portfolio items */
+  .portfolio-item {
+    background: #022b3a;
+    border: 3px solid var(--primary-color);
+    border-radius: 20px;
+    color: #e0f7fa;
+    padding: 24px;
+    user-select: text;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow:
+      0 0 15px var(--primary-color),
+      inset 0 0 12px #00fff7;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    max-width: 320px;
+  }
+  .portfolio-item:hover,
+  .portfolio-item.active {
+    box-shadow:
+      0 0 30px var(--secondary-color),
+      inset 0 0 20px var(--secondary-color);
+    transform: translateY(-8px) scale(1.03);
+    border-color: var(--secondary-color);
+    outline: none;
+  }
+  .portfolio-item h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: clamp(14px, 1.5vw, 18px);
+    text-shadow: 0 0 6px #00ffff;
+  }
+  .portfolio-item p {
+    font-size: clamp(8px, 1vw, 10px);
+    line-height: 1.3;
+    color: #b2ebf2;
+    flex-grow: 1;
+  }
+  .portfolio-item a {
+    margin-top: 16px;
+    align-self: flex-start;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: clamp(8px, 1vw, 12px);
+    outline-offset: 4px;
+  }
+  .portfolio-item a:hover,
+  .portfolio-item a:focus {
+    color: var(--secondary-color);
+    text-decoration: underline;
+  }
+
+  /* Navigation controls for mobile */
+  #mobile-controls {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: clamp(16px, 3vw, 32px);
+    z-index: 100;
+  }
+  #mobile-controls button {
+    background: var(--button-bg);
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    color: var(--primary-color);
+    font-size: clamp(20px, 4vw, 24px);
+    width: clamp(48px, 10vw, 60px);
+    height: clamp(48px, 10vw, 60px);
+    cursor: pointer;
+    box-shadow:
+      0 0 8px var(--primary-color),
+      inset 0 0 10px var(--primary-color);
+    transition: background-color 0.3s ease;
+  }
+  #mobile-controls button:hover,
+  #mobile-controls button:focus {
+    background-color: var(--primary-color);
+    color: #111;
+    outline: none;
+  }
+  #mobile-controls button:active {
+    transform: scale(0.95);
+  }
+
+  /* Pause menu overlay */
+  #pause-menu {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+    z-index: 200;
+    text-align: center;
+    padding: 24px;
+  }
+  #pause-menu.active {
+    display: flex;
+  }
+  #pause-menu h2 {
+    color: var(--primary-color);
+    font-size: clamp(20px, 5vw, 28px);
+    text-shadow: 0 0 12px var(--primary-color);
+  }
+  #pause-menu button {
+    background-color: var(--button-bg);
+    border: 4px solid var(--primary-color);
+    border-radius: 20px;
+    color: var(--primary-color);
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(12px, 2.5vw, 14px);
+    padding: 14px 48px;
+    cursor: pointer;
+    box-shadow:
+      0 0 12px var(--primary-color),
+      inset 0 0 12px var(--primary-color);
+    transition: all 0.3s ease-in-out;
+    min-width: 180px;
+  }
+  #pause-menu button:hover,
+  #pause-menu button:focus {
+    background-color: var(--primary-color);
+    color: #111;
+    outline: none;
+  }
+
+  /* Responsive UI adjustments */
+  @media (max-width: 600px) {
+    #portfolio-levels {
+      grid-template-columns: 1fr;
+      gap: 16px 16px;
+    }
+  }
+  @media (min-width: 601px) and (max-width: 900px) {
+    #portfolio-levels {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 24px;
+    }
+  }
+  @media (min-width: 901px) {
+    #portfolio-levels {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 32px;
+    }
+  }

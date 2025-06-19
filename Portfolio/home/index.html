@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="home.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Portfolio</title>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+</head>
+<body>
+<div id="app" role="main" aria-label="Portfolio Application">
+  <header class="hud" aria-live="polite" aria-atomic="true">
+    <div class="title" aria-label="Portfolio Title">Code Talker</div>
+    <div class="score" aria-label="Player Score">Score: <span id="score-value">0</span></div>
+    <div class="level" aria-label="Current Level">Level: <span id="level-value">1</span></div>
+  </header>
+
+  <section id="main-menu" aria-label="Main Menu">
+    <div class="game-title" tabindex="0">Ajhin Crafts</div>
+    <button id="start-game-btn" aria-label="Start Portfolio Exploration" autofocus>Start Exploration</button>
+  </section>
+
+  <section id="gameplay" aria-label="Portfolio Exploration Area" tabindex="0" role="application" aria-live="polite" aria-atomic="true">
+    <div id="portfolio-levels" role="list" aria-label="Portfolio Items List">
+      <!-- Portfolio items dynamically injected here -->
+    </div>
+  </section>
+
+  <section id="pause-menu" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="pause-title">
+    <h2 id="pause-title">Game Paused</h2>
+    <button id="resume-btn" aria-label="Resume Exploration">Resume</button>
+    <button id="restart-btn" aria-label="Restart Exploration">Restart</button>
+  </section>
+
+  <div id="controls-hint" aria-hidden="true" aria-live="off">
+    Use &uarr; &darr; arrow keys or tap controls (mobile) to navigate portfolio. Press <span style="font-family: monospace;">P</span> to pause.
+  </div>
+
+  <nav id="mobile-controls" aria-label="Mobile Navigation Controls" role="navigation">
+    <button id="btn-prev" aria-label="Previous Portfolio Item" title="Previous">
+      <span class="material-icons" aria-hidden="true">keyboard_arrow_up</span>
+    </button>
+    <button id="btn-next" aria-label="Next Portfolio Item" title="Next">
+      <span class="material-icons" aria-hidden="true">keyboard_arrow_down</span>
+    </button>
+  </nav>
+</div>
+
+<script>
+  // Portfolio data
+  const portData = [
+    {
+      id: 'project1',
+      title: 'About Ajhin',
+      description: "Wanna Learn More About My Personal Life? Don't be shy and take a look!",
+      url: '../about/about.html',
+    },
+    {
+      id: 'project2',
+      title: 'Games',
+      description: 'A Game My Team and I Had Created During Senior High School',
+      url: '../pixelGame/pixelGame.html',
+    },
+    {
+      id: 'project3',
+      title: 'Projects',
+      description: 'Dashboard for data visualization using D3.js and React with real-time updates.',
+      url: '../project/project.html',
+    },
+    {
+      id: 'project4',
+      title: 'Contacts',
+      description: 'Adaptive control schemes built with vanilla JavaScript to support multiple devices.',
+      url: '../contacts/contact.html',
+    }
+  ];
+
+  // DOM Elements
+  const mainMenuEl = document.getElementById('main-menu');
+  const startBtn = document.getElementById('start-game-btn');
+  const gameplayEl = document.getElementById('gameplay');
+  const portfolioLevelsEl = document.getElementById('portfolio-levels');
+  const pauseMenuEl = document.getElementById('pause-menu');
+  const resumeBtn = document.getElementById('resume-btn');
+  const restartBtn = document.getElementById('restart-btn');
+  const scoreValueEl = document.getElementById('score-value');
+  const levelValueEl = document.getElementById('level-value');
+  const controlsHintEl = document.getElementById('controls-hint');
+  const mobileControls = document.getElementById('mobile-controls');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+
+  // Game state
+  let currentLevel = 0; // index of portfolio item current selected
+  let score = 0;
+  let gamePaused = false;
+
+  // Detect if touch device
+  const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+
+  // Initialize game
+  function initGame() {
+    mainMenuEl.style.display = 'none';
+    gameplayEl.style.display = 'block';
+    score = 0; currentLevel = 0;
+    updateHUD();
+    renderPortfolioItems();
+    gameplayEl.focus();
+    gamePaused = false;
+    pauseMenuEl.classList.remove('active');
+    pauseMenuEl.setAttribute('aria-hidden', 'true');
+    gameplayEl.setAttribute('aria-hidden', 'false');
+    updateControlsVisibility();
+  }
+
+  // Update HUD
+  function updateHUD() {
+    scoreValueEl.textContent = score.toString();
+    levelValueEl.textContent = (currentLevel + 1).toString();
+  }
+
+  // Render portfolio levels
+  function renderPortfolioItems() {
+    portfolioLevelsEl.innerHTML = '';
+    portData.forEach((item, index) => {
+      const itemEl = document.createElement('article');
+      itemEl.classList.add('portfolio-item');
+      if (index === currentLevel) itemEl.classList.add('active');
+      itemEl.setAttribute('role', 'listitem');
+      itemEl.setAttribute('tabindex', index === currentLevel ? '0' : '-1');
+      itemEl.dataset.index = index;
+      itemEl.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        <a href="${item.url}" tabindex="0">View Project</a>
+      `;
+      portfolioLevelsEl.appendChild(itemEl);
+
+      // Click to activate item
+      itemEl.addEventListener('click', () => {
+        if (gamePaused) return;
+        goToLevel(index);
+      });
+    });
+  }
+
+  // Navigate to level
+  function goToLevel(index) {
+    if (index < 0) index = 0;
+    if (index >= portData.length) index = portData.length - 1;
+    currentLevel = index;
+    updateHUD();
+    updateActiveItem();
+  }
+
+  // Update active item styles and focus
+  function updateActiveItem() {
+    const items = portfolioLevelsEl.querySelectorAll('.portfolio-item');
+    items.forEach((item, i) => {
+      if (i === currentLevel) {
+        item.classList.add('active');
+        item.setAttribute('tabindex', '0');
+        item.focus({preventScroll:true});
+      } else {
+        item.classList.remove('active');
+        item.setAttribute('tabindex', '-1');
+      }
+    });
+  }
+
+  // Increment score (for demonstration)
+  function addScore(points) {
+    score += points;
+    updateHUD();
+  }
+
+  // Pause handling
+  function pauseGame() {
+    if (gamePaused) return;
+    gamePaused = true;
+    pauseMenuEl.classList.add('active');
+    pauseMenuEl.setAttribute('aria-hidden', 'false');
+    gameplayEl.setAttribute('aria-hidden', 'true');
+  }
+  function resumeGame() {
+    if (!gamePaused) return;
+    gamePaused = false;
+    pauseMenuEl.classList.remove('active');
+    pauseMenuEl.setAttribute('aria-hidden', 'true');
+    gameplayEl.setAttribute('aria-hidden', 'false');
+    gameplayEl.focus();
+  }
+  function restartGame() {
+    resumeGame();
+    initGame();
+  }
+
+  // Keyboard navigation handler
+  function handleKeyDown(e) {
+    if (mainMenuEl.style.display !== 'none') return;
+    if (gamePaused) {
+      if (e.key.toLowerCase() === 'p') {
+        resumeGame();
+        e.preventDefault();
+      }
+      return;
+    }
+    if (e.key === 'ArrowRight') {
+      if (currentLevel < portData.length - 1) {
+        goToLevel(currentLevel + 1);
+        addScore(5);
+      }
+      e.preventDefault();
+    } else if (e.key === 'ArrowLeft') {
+      if (currentLevel > 0) {
+        goToLevel(currentLevel - 1);
+        addScore(5);
+      }
+      e.preventDefault();
+    } else if (e.key.toLowerCase() === 'p') {
+      pauseGame();
+      e.preventDefault();
+    }
+  }
+
+  // Mobile control button handlers
+  btnPrev.addEventListener('click', () => {
+    if (gamePaused) return;
+    if (currentLevel > 0) {
+      goToLevel(currentLevel - 1);
+      addScore(5);
+    }
+  });
+  btnNext.addEventListener('click', () => {
+    if (gamePaused) return;
+    if (currentLevel < portData.length - 1) {
+      goToLevel(currentLevel + 1);
+      addScore(5);
+    }
+  });
+
+  // Pause menu buttons
+  resumeBtn.addEventListener('click', () => {
+    resumeGame();
+  });
+  restartBtn.addEventListener('click', () => {
+    restartGame();
+  });
+
+  // Start game button
+  startBtn.addEventListener('click', () => {
+    initGame();
+  });
+
+  // Global keyboard listener
+  window.addEventListener('keydown', handleKeyDown);
+
+  // Show/hide mobile controls based on device and window size
+  function updateControlsVisibility() {
+    const width = window.innerWidth;
+    if (isTouchDevice || width <= 767) {
+      mobileControls.style.display = 'flex';
+      controlsHintEl.style.display = 'block';
+    } else {
+      mobileControls.style.display = 'none';
+      controlsHintEl.style.display = 'none';
+    }
+  }
+
+  // On window resize, update controls visibility
+  window.addEventListener('resize', () => {
+    updateControlsVisibility();
+  });
+
+  // Initial focus for accessibility
+  mainMenuEl.querySelector('button').focus();
+
+  // Initial UI state
+  updateControlsVisibility();
+
+</script>
+</body>
+</html>
+
